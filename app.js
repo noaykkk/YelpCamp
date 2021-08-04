@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const session = require('express-session');
 const flash = require('connect-flash');
-const {campgroundSchema, reviewSchema} = require('./schemas');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
@@ -24,6 +23,7 @@ const userRoutes = require('./routes/user');
 const MongoStore = require("connect-mongo");
 
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+// process.env.DB_URL ||
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -42,7 +42,7 @@ const app = express();
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true}));
 app.use(methodOverride('_method'));

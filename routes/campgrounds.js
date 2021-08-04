@@ -52,7 +52,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 
 router.get('/:id/edit', catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
-    if(!req.user._id.equals('60e53f0f82e191588047268f')){
+    if(!req.user._id.equals(process.env.admin)){
         if(!campground.author.equals(req.user._id)){
             req.flash('error', 'You do not have permission to do that!');
             return res.redirect('/campgrounds/${id}`');
